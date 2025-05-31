@@ -1,21 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Existing HTML Page</title>
-    </head>
-<body>
-    <div id="react-container">
-        </div>
-
-    <script crossorigin src="randomsentence.js"></script>
-
-    <script type="text/javascript">
-        function MyReactComponent() {
-            return React.createElement('h2', null, 'This component is rendered by React!');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My React App in HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8; /* Light blue-gray background */
         }
+        #root {
+            /* This is the container where your React app will render */
+            width: 100%;
+            max-width: 600px; /* Example max-width for your app container */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
 
-        const root = ReactDOM.createRoot(document.getElementById('react-container'));
-        root.render(React.createElement(MyReactComponent));
+    <!--
+        Include React and ReactDOM libraries from a CDN.
+        These are essential for React to function in the browser.
+        Use the 'development.js' versions for development as they include helpful warnings.
+        For production, use the 'production.min.js' versions for better performance.
+    -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!--
+        Include your React application's JavaScript file.
+        Make sure the path to 'myReactApp.js' is correct relative to your index.html.
+        The 'type="module"' is crucial here as it tells the browser to treat this as an ES module,
+        allowing the 'import' statement in the next script block to work.
+    -->
+    <script type="module" src="./randomsentence.js"></script>
+
+    <!--
+        This script is responsible for mounting your React application to the DOM.
+        It should run AFTER your React component code is loaded.
+        We assume your React file exports a default component named 'App'.
+    -->
+    <script type="module">
+        // Import your main React component from the separate file
+        // The path './myReactApp.js' refers to the file in the same directory.
+        import App from './randomsentence.js'; 
+
+        // Get the root DOM element where the React app will be rendered
+        const container = document.getElementById('root');
+
+        // Create a React root
+        // ReactDOM.createRoot is the new way to create a root in React 18+
+        const root = ReactDOM.createRoot(container);
+
+        // Render your main React component into the root
+        // React.createElement(App) is how you render a component when not using JSX directly in HTML.
+        root.render(React.createElement(App));
+
+        console.log("React app mounted successfully!");
     </script>
-    </body>
+</body>
 </html>
