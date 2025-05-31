@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Existing HTML Page</title>
+    </head>
+<body>
+    <div id="react-container">
+        </div>
+
+    <script crossorigin src="randomsentence.js"></script>
+
+    <script type="text/javascript">
+        function MyReactComponent() {
+            return React.createElement('h2', null, 'This component is rendered by React!');
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('react-container'));
+        root.render(React.createElement(MyReactComponent));
+    </script>
+    </body>
+</html>
