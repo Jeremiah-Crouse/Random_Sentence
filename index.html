@@ -44,7 +44,7 @@
         The 'type="module"' is crucial here as it tells the browser to treat this as an ES module,
         allowing the 'import' statement in the next script block to work.
     -->
-    <script type="module" src="./randomsentence.js"></script>
+    <script type="module" src="randomsentence.js"></script>
 
     <!--
         This script is responsible for mounting your React application to the DOM.
@@ -54,7 +54,7 @@
     <script type="module">
         // Import your main React component from the separate file
         // The path './myReactApp.js' refers to the file in the same directory.
-        import App from './randomsentence.js'; 
+        import App from 'randomsentence.js'; 
 
         // Get the root DOM element where the React app will be rendered
         const container = document.getElementById('root');
