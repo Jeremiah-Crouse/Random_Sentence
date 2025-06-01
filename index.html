@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My React App in HTML</title>
+    <title>Random Sentence Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -30,44 +30,29 @@
     <div id="root"></div>
 
     <!--
-        Include React and ReactDOM libraries from a CDN.
+        STEP 1: Include React and ReactDOM libraries from a CDN.
         These are essential for React to function in the browser.
-        Use the 'development.js' versions for development as they include helpful warnings.
-        For production, use the 'production.min.js' versions for better performance.
+        They expose 'React' and 'ReactDOM' as global variables.
     -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <!--
-        Include your React application's JavaScript file.
-        Make sure the path to 'myReactApp.js' is correct relative to your index.html.
-        The 'type="module"' is crucial here as it tells the browser to treat this as an ES module,
-        allowing the 'import' statement in the next script block to work.
+        STEP 2: Include Babel Standalone.
+        This script allows the browser to transpile JSX (React's HTML-like syntax)
+        into regular JavaScript on the fly. This is for development/demonstration only.
     -->
-    <script type="module" src="randomsentence.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <!--
-        This script is responsible for mounting your React application to the DOM.
-        It should run AFTER your React component code is loaded.
-        We assume your React file exports a default component named 'App'.
+        STEP 3: Include your React application's JavaScript file.
+        The 'src="./randomsentence.js"' tells the browser to look for 'randomsentence.js'
+        in the SAME directory as this 'index.html' file.
+        The 'type="text/babel"' is CRITICAL here! It tells Babel to process this script
+        and convert any JSX within it into browser-understandable JavaScript.
+        This script will now also contain the mounting logic.
     -->
-    <script type="module">
-        // Import your main React component from the separate file
-        // The path './myReactApp.js' refers to the file in the same directory.
-        import App from 'randomsentence.js'; 
+    <script type="text/babel" src="./randomsentence.js"></script>
 
-        // Get the root DOM element where the React app will be rendered
-        const container = document.getElementById('root');
-
-        // Create a React root
-        // ReactDOM.createRoot is the new way to create a root in React 18+
-        const root = ReactDOM.createRoot(container);
-
-        // Render your main React component into the root
-        // React.createElement(App) is how you render a component when not using JSX directly in HTML.
-        root.render(React.createElement(App));
-
-        console.log("React app mounted successfully!");
-    </script>
 </body>
 </html>
